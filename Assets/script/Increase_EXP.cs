@@ -7,7 +7,7 @@ public class Increase_EXP : MonoBehaviour
 {
     private  bool isCollide = false ;
     Rigidbody2D rig;
-    float speed = 2;
+   
     Animator ani;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,11 @@ public class Increase_EXP : MonoBehaviour
     {
         if (isCollide == true)
         {
-          
+            if (ani.GetCurrentAnimatorStateInfo(0).length <
+            ani.GetCurrentAnimatorStateInfo(0).normalizedTime)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

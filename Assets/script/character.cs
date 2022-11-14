@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class character : MonoBehaviour
 {
+    public Camera main_camera;
     public Image EXP;
     public Joystick joystick;
     public float speed;
@@ -24,7 +25,7 @@ public class character : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
-
+        main_camera.transform.position = transform.position + new Vector3 (0,0,-10);
         if (Time.realtimeSinceStartup - preTime > timeInitBullet)
         {
            
@@ -62,7 +63,7 @@ public class character : MonoBehaviour
         {
             // increase EXP
             EXP.fillAmount += 0.05f;
-            
+            if (EXP.fillAmount >= 1) EXP.fillAmount = 0;
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class zombies : MonoBehaviour
 {
     public GameObject EXP;
+    
     public float step;
     // Start is called before the first frame update
     character character;
@@ -23,7 +24,8 @@ public class zombies : MonoBehaviour
 
     private bool isCollide = false;
     void Start()
-    {
+    {   
+         
         character = FindObjectOfType<character>();
     }
 
@@ -34,7 +36,8 @@ public class zombies : MonoBehaviour
             movetoCharacter();
         if (blood <= 0)
         {
-            Instantiate(EXP, transform.position, Quaternion.identity);
+             
+            Instantiate(EXP, transform.position, Quaternion.identity  );
             Destroy(this.gameObject);
         }
     }
@@ -42,6 +45,7 @@ public class zombies : MonoBehaviour
     {
          
         transform.position = Vector3.MoveTowards(transform.position, character.transform.position, step);
+
     }
      
     

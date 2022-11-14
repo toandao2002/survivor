@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5839620323240790071}
   - component: {fileID: 5839620323240790070}
   m_Layer: 0
-  m_Name: EXP 1 (1)
+  m_Name: EXP 1
   m_TagString: EXP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

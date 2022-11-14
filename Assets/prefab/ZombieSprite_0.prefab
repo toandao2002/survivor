@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6707b92d85490942bb12458ea2dbc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EXP: {fileID: 5839620323240790069, guid: b8854b8d687531442852415ce9d08643, type: 3}
+  EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
+  ContainEXP: {fileID: 0}
   step: 0.005
 --- !u!60 &1893604424067069984
 PolygonCollider2D:
