@@ -9,7 +9,7 @@ public class huanraojupan :   ShootBullet
     int dame = 20;
   /*  public bool is_sample = false;*/
    
-    float angle, radius= 2;
+    float angle ;
     Vector3 center_circle;
     public override void shoot()
     {

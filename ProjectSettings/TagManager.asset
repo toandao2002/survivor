@@ -5,14 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - player
+  - Zombie
+  - Bullet
+  - EXP
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - map
   - Water
   - UI
-  - 
+  - character
   - 
   - 
   - 
@@ -41,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: map
+    uniqueID: 931870055
+    locked: 0
+  - name: character
+    uniqueID: 295575939
     locked: 0

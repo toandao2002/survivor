@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    public static UI Instance { get; private set; }
     public Text time;
+    public Text amount_zombie_die;
     int h, s;
     float time_start;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         time_start = Time.realtimeSinceStartup;
+        amount_zombie_die.text = "0";
     }
     void update_time_play()
     {

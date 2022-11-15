@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class zombies : MonoBehaviour
 {
     public GameObject EXP;
+   
     
     public float step;
     // Start is called before the first frame update
@@ -38,6 +41,12 @@ public class zombies : MonoBehaviour
         {
              
             Instantiate(EXP, transform.position, Quaternion.identity  );
+
+            int tmp = Int32.Parse(UI.Instance.amount_zombie_die.text);
+            tmp++;
+            UI.Instance.amount_zombie_die.text = tmp.ToString();
+           
+
             Destroy(this.gameObject);
         }
     }
@@ -53,7 +62,7 @@ public class zombies : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-             
+            
             isCollide = true;
         }
          

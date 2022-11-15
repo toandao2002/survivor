@@ -7,7 +7,7 @@ public class Shoot_kunai : ShootBullet
     zombies zombie;
     public float speed;
     int dame =20;
-    public bool is_sample = false;
+   
     public long timeInitBullet = 2;
     float preTime = 0;
     private void Awake()

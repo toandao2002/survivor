@@ -52,7 +52,7 @@ public class BulletBrick :   ShootBullet
         {
             flag_shoot = false ;
             float x = Random.Range(-0.5f, 0.5f);
-            Debug.Log(x);
+           
             Rig.AddForce(new Vector3 (x,1,0)* speed);
         }
     }
