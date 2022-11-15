@@ -58,7 +58,7 @@ public class zombies : MonoBehaviour
         }
          
         
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet" )
         {
             int tmp = collision.gameObject.GetComponent<ShootBullet>().GetDame();
             blood -= tmp;

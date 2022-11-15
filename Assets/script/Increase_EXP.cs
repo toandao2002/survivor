@@ -24,7 +24,8 @@ public class Increase_EXP : MonoBehaviour
             if (ani.GetCurrentAnimatorStateInfo(0).length <
             ani.GetCurrentAnimatorStateInfo(0).normalizedTime)
             {
-                Destroy(this.gameObject);
+                Destroy(this.transform.parent.gameObject);
+             
             }
         }
     }

@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ShootBullet 
+
+public enum BulletName
 {
-    int GetDame();
-    void SetDame(int value);
+    kunai,
+    huanr,
+    brick,
+    rocket
+
+}
+public abstract class ShootBullet : MonoBehaviour
+{
+    public bool is_sample =false ;
+    public abstract int GetDame();
+    public abstract void SetDame(int value);
 
     // Start is called before the first frame update
-    void shoot(zombies zombies, float speed, float dame );
+    public abstract void shoot( );
      
     
 }

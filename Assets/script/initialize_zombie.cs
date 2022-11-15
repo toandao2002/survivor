@@ -26,6 +26,7 @@ public class initialize_zombie : MonoBehaviour
             preTime = Time.realtimeSinceStartup;
             
         }
+         
     }
      
 }

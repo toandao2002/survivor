@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.03
+  is_sample: 1
+  timeInitBullet: 1
 --- !u!61 &3719599427026970011
 BoxCollider2D:
   m_ObjectHideFlags: 0
