@@ -9,7 +9,7 @@ public class BulletBrick :   ShootBullet
     
     public long timeInitBullet = 2;
     float preTime = 0;
-    bool flag_shoot = true;
+    bool flag_shoot = false;
     Rigidbody2D Rig;
     public override int GetDame()
     {
@@ -23,15 +23,7 @@ public class BulletBrick :   ShootBullet
 
     public override void shoot()
     {
-        if (Time.time - preTime > timeInitBullet)
-        {
-
-            BulletBrick tmp = Instantiate(this, character.Instance.get_position(), Quaternion.identity);
-            tmp.is_sample = false;
-            tmp.gameObject.SetActive(true);
-            preTime = Time.time;
-
-        }
+        flag_shoot = true;
     }
 
     // Start is called before the first frame update
@@ -43,30 +35,21 @@ public class BulletBrick :   ShootBullet
     // Update is called once per frame
     void Update()
     {
-        if (is_sample)
+
+        move();
+        if (OutOfSreen())
         {
-            gameObject.SetActive(false);
-            return;
+            Destroy(this.gameObject);
         }
+    }
+    void move()
+    {
         if (flag_shoot)
         {
-            flag_shoot = false ;
+            flag_shoot = false;
             float x = Random.Range(-0.5f, 0.5f);
-           
-            Rig.AddForce(new Vector3 (x,1,0)* speed);
+            Rig.AddForce(new Vector3(x, 1, 0) * speed);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Zombie")
-        {
-            if (is_sample)
-            {
-                dame = 0;
-                gameObject.SetActive(false);
-            }else 
-                Destroy(this.gameObject);
-            
-        }
-    }
+   
 }

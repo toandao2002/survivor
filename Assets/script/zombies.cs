@@ -14,7 +14,7 @@ public class zombies : MonoBehaviour
     character character;
     private int blood = 20 ;
     private int dame;
-     
+    
     private int GetDame()
     {
         return dame;
@@ -27,14 +27,17 @@ public class zombies : MonoBehaviour
 
     private bool isCollide = false;
     void Start()
-    {   
-         
+    {
+       
+        
+
         character = FindObjectOfType<character>();
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+      
         if (isCollide== false)
             movetoCharacter();
         if (blood <= 0)

@@ -9,6 +9,7 @@ public class Bullet_rocket : ShootBullet
     public float speed;
     int dame = 20;
     Vector3 des;
+    bool flag_shoot = false;
     public long timeInitBullet = 2;
     float preTime = 0;
     private void Awake()
@@ -26,34 +27,16 @@ public class Bullet_rocket : ShootBullet
     // Update is called once per frame
     void Update()
     {
-
-
-        if (is_sample)
-        {
-            dame = 0;
-            gameObject.SetActive(false);
-            return;
-
-        }
-        gameObject.SetActive(true);
-        if (zombie != null)
-        {
-            des = zombie.transform.position;
-            // quay doi tuong theo huong
-            Vector3 dir = zombie.transform.position - character.Instance.get_position();
-            dir.Normalize();
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, 0, (angle - 90));
-            //  di chuyem bullet 
-            
-        }
+ 
+        
+        
 
         if (transform.position == des)
         {
             Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        transform.position = Vector3.MoveTowards(transform.position, des, speed);
+        move();
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,25 +57,39 @@ public class Bullet_rocket : ShootBullet
     {
         dame = value;
     }
-
+    void move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, des, speed);
+    }
     public override void shoot()
     {
-
-        if (Time.time - preTime > timeInitBullet)
+        // set dir  for bullet 
+        zombie = FindObjectOfType<zombies>();
+        if (zombie != null && flag_shoot == false)
         {
-
-            zombie = FindObjectOfType<zombies>();
-            if (zombie != null)
-            {
-
-                Bullet_rocket tmp = Instantiate(this, character.Instance.get_position(), Quaternion.identity);
-                tmp.is_sample = false;
-                tmp.zombie = zombie;
-                tmp.gameObject.SetActive(true);
-                preTime = Time.time;
-
-            }
+            flag_shoot = true;
+            des = zombie.transform.position;
+            // quay doi tuong theo huong
+            Vector3 dir = zombie.transform.position - character.Instance.get_position();
+            dir.Normalize();
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.eulerAngles = new Vector3(0, 0, (angle - 90));
+            //  di chuyem bullet 
 
         }
+        else if (flag_shoot == false)
+        {
+            flag_shoot = true;
+            Vector3 randompos = Random.insideUnitSphere * 5;
+            randompos.z = 0;
+            des = character.Instance.get_position() + randompos;
+            // quay doi tuong theo huong
+            Vector3 dir = randompos;
+            dir.Normalize();
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.eulerAngles = new Vector3(0, 0, (angle - 90));
+        }
     }
+           
+          
 }

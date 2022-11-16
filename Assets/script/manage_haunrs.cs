@@ -41,20 +41,8 @@ public class manage_haunrs :  ShootBullet
     public override void shoot()
     {
 
-        if (Time.time - preTime > timeInitBullet)
-        {
+        InitShoot();
 
-            zombie = FindObjectOfType<zombies>();
-            if (zombie != null)
-            {
-
-                InitShoot();
-
-                preTime = Time.time;
-
-            }
-
-        }
     }
     // Start is called before the first frame update
     void Start()

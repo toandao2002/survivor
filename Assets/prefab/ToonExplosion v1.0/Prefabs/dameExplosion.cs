@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class dameExplosion : ShootBullet
-{   public int Dame = 20;
+{   
+    public int Dame = 20;
     public override int GetDame()
     {
         return 20;

@@ -32,18 +32,63 @@ public class character : MonoBehaviour
     {
         Instance = this;
         bullets = new List<ShootBullet>();
-        bullet_prefabs[(int)BulletName.kunai].is_sample = true;
+       
     }
     void Start()
     {
         preTime = (long)Time.realtimeSinceStartup;
         anim = GetComponent<Animator>();
-        ShootBullet tmp = Instantiate(bullet_prefabs[(int)BulletName.kunai], transform.position, Quaternion.identity);
-       /* bullets.Add(tmp);
-        bullet_prefabs[(int)BulletName.brick].is_sample = true;
-        bullets.Add(Instantiate(bullet_prefabs[(int)BulletName.brick], transform.position, Quaternion.identity));*/
-        bullet_prefabs[(int)BulletName.rocket].is_sample = true;
-        bullets.Add(Instantiate(bullet_prefabs[(int)BulletName.rocket], transform.position, Quaternion.identity));
+       
+        StartCoroutine(SpawnBulletBrick());
+        StartCoroutine(SpawnBulletKunai());
+        StartCoroutine(SpawnBulletRocket());
+        StartCoroutine(SpawnBulletZuantoudan());
+    }
+
+    IEnumerator IESpawnBulletExample()
+    {
+        while (true)
+        {
+            var bullet = Instantiate(bullet_prefabs[(int)BulletName.example], transform.position, Quaternion.identity);
+          //  bullet.shoot();
+            yield return new WaitForSeconds(3);
+        }
+    }
+    IEnumerator SpawnBulletZuantoudan()
+    {
+        while (true)
+        {
+            var bullet = Instantiate(bullet_prefabs[(int)BulletName.zuanto], transform.position, Quaternion.identity);
+            bullet.shoot();
+            yield return new WaitForSeconds(3);
+        }
+    }
+    IEnumerator SpawnBulletKunai()
+    {
+        while (true)
+        {
+            var bullet = Instantiate(bullet_prefabs[(int)BulletName.kunai], transform.position, Quaternion.identity);
+            bullet.shoot();
+            yield return new WaitForSeconds(3);
+        }
+    }
+    IEnumerator SpawnBulletBrick()
+    {
+        while (true)
+        {
+            var bullet = Instantiate(bullet_prefabs[(int)BulletName.brick], transform.position, Quaternion.identity);
+            bullet.shoot();
+            yield return new WaitForSeconds(3);
+        }
+    }
+    IEnumerator SpawnBulletRocket()
+    {
+        while (true)
+        {
+            var bullet = Instantiate(bullet_prefabs[(int)BulletName.rocket], transform.position, Quaternion.identity);
+            bullet.shoot();
+            yield return new WaitForSeconds(1);
+        }
     }
 
     // Update is called once per frame
@@ -51,11 +96,7 @@ public class character : MonoBehaviour
     {
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
         main_camera.transform.position = transform.position + new Vector3(0, 0, -10);
-        foreach (var bullet in bullets)
-        {
-            bullet.shoot();
-
-        }
+        
         if (EXP.fillAmount >= 1)
         {
 

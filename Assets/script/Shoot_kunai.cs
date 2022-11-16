@@ -7,7 +7,8 @@ public class Shoot_kunai : ShootBullet
     zombies zombie;
     public float speed;
     int dame =20;
-   
+    Vector3 des ;
+    bool flag_shoot = false;
     public long timeInitBullet = 2;
     float preTime = 0;
     private void Awake()
@@ -18,39 +19,24 @@ public class Shoot_kunai : ShootBullet
     {
          
     }
-     
-
-    
-    
     // Update is called once per frame
     void Update()
     {
 
+        move();
+        if (OutOfSreen())
+        {
+            Destroy(this.gameObject);
+        }
+            
+       
+    }
+    void move()
+    {
+        
 
-        if (is_sample)
-        {
-            dame = 0;
-            gameObject.SetActive(false);
-            return;
-            
-        }
-        gameObject.SetActive(true);
-        if (zombie != null)
-        {
-            
-            // quay doi tuong theo huong
-            Vector3 dir = zombie.transform.position - character.Instance.get_position();
-            dir.Normalize();
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, 0, (  angle - 90 ) );
-            //  di chuyem bullet 
-            transform.position = Vector3.MoveTowards(transform.position, zombie.transform.position, speed);
-        }
-            
-        else
-        {
-            zombie = FindObjectOfType<zombies>();
-        }
+        transform.Translate(des * 10 * Time.deltaTime);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -71,21 +57,34 @@ public class Shoot_kunai : ShootBullet
 
     public override void shoot( )
     {
-        
-        if (Time.time - preTime > timeInitBullet) 
+        zombie = FindObjectOfType<zombies>();
+        if (zombie != null && flag_shoot == false)
         {
-             
-            zombie = FindObjectOfType<zombies>();
-            if (zombie != null)
-            {
+            flag_shoot = true;
+            // quay doi tuong theo huong
+            Vector3 dir = zombie.transform.position - character.Instance.get_position();
 
-                Shoot_kunai tmp = Instantiate(this, character.Instance.get_position(), Quaternion.identity);
-                tmp.is_sample = false ;
-                tmp.gameObject.SetActive(true);
-                preTime = Time.time;
+            dir.Normalize();
+            des = dir;
+            float angle = Vector2.Angle(dir, Vector2.up);
+            if (dir.x > 0) angle *= -1;
+            transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, (angle - 45));
+            
+        }
+        else if (flag_shoot == false)
+        {
+            flag_shoot = true;
+            Vector3 randompos = Random.insideUnitSphere;
+            randompos.z = 0;
+            des = character.Instance.get_position() + randompos;
+            Vector3 dir = des;
 
-            }
-           
+            dir.Normalize();
+            des = dir;
+
+            float angle = Vector2.Angle(dir, Vector2.up);
+            if (dir.x > 0) angle *= -1;
+            transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, (angle - 45));
         }
     }
 }
