@@ -14,7 +14,8 @@ public enum BulletName
 
 }
 public abstract class ShootBullet : MonoBehaviour
-{
+{   
+    public int level;
     public ParticleSystem collisionEnemyFx;
     float widthcam, heightcam;
     Camera cam ;
@@ -37,6 +38,7 @@ public abstract class ShootBullet : MonoBehaviour
             //CollisionWithZombie(collision.transform);
         }
     }
+     
     public bool OutOfSreen()
     {
         if (cam == null)

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum SkillName
 {
@@ -11,8 +11,11 @@ public enum SkillName
 [System.Serializable]
 public class Skill
 {
-    public SkillName name;
-    public Sprite img;
+    public BulletName enum_bullet;
+    public Sprite sprite;
+    public string  Describe;
+    public int level = 1;
+    
 }
 
 
@@ -20,4 +23,6 @@ public class Skill
 public class SkillData : ScriptableObject
 {
     public List<Skill> skills;
+    
+     
 }

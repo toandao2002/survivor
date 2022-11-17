@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,10 +40,10 @@ public class character : MonoBehaviour
         preTime = (long)Time.realtimeSinceStartup;
         anim = GetComponent<Animator>();
        
-        StartCoroutine(SpawnBulletBrick());
-        StartCoroutine(SpawnBulletKunai());
+       /* StartCoroutine(SpawnBulletBrick());
+        
         StartCoroutine(SpawnBulletRocket());
-        StartCoroutine(SpawnBulletZuantoudan());
+        StartCoroutine(SpawnBulletZuantoudan());*/
     }
 
     IEnumerator IESpawnBulletExample()
@@ -54,6 +55,13 @@ public class character : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
+    public   void AddNewBullet(string bullet)
+    {
+         
+        BulletName tmp =(BulletName) Enum.Parse(typeof(BulletName), bullet);
+        StartCoroutine( SpawnBulletKunai(tmp));
+    }
+    
     IEnumerator SpawnBulletZuantoudan()
     {
         while (true)
@@ -63,11 +71,11 @@ public class character : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
-    IEnumerator SpawnBulletKunai()
+    IEnumerator SpawnBulletKunai(BulletName bulletname )
     {
         while (true)
         {
-            var bullet = Instantiate(bullet_prefabs[(int)BulletName.kunai], transform.position, Quaternion.identity);
+            var bullet = Instantiate(bullet_prefabs[(int)bulletname], transform.position, Quaternion.identity);
             bullet.shoot();
             yield return new WaitForSeconds(3);
         }

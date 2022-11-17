@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: skill_data
   m_EditorClassIdentifier: 
   skills:
-  - name: 0
-    img: {fileID: 21300000, guid: 9888cc4f47a287b4d8fde55d355ee381, type: 3}
-  - name: 0
-    img: {fileID: 21300000, guid: 124845b10d9019645a28fa4e2fda506e, type: 3}
-  - name: 0
-    img: {fileID: 21300000, guid: 124845b10d9019645a28fa4e2fda506e, type: 3}
+  - enum_bullet: 0
+    sprite: {fileID: 21300000, guid: aa072ce7a8016ea47a9aea338f569eac, type: 3}
+    Describe: "B\u1EA5m v\xE0o \u0111i"
+    level: 1
+  - enum_bullet: 1
+    sprite: {fileID: 21300000, guid: 64c890419a14a824189d5e4c0b9b9468, type: 3}
+    Describe: hihihi
+    level: 1
+  - enum_bullet: 2
+    sprite: {fileID: 21300000, guid: 3d9f61c58fd26134f887a8d88e31cd09, type: 3}
+    Describe: alo
+    level: 1
+  - enum_bullet: 3
+    sprite: {fileID: 21300000, guid: cda08683c9f48814385cf4fc874982d1, type: 3}
+    Describe: 
+    level: 1
+  - enum_bullet: 4
+    sprite: {fileID: 21300000, guid: af9dcec8eccc08946b13ac7838a293d4, type: 3}
+    Describe: 
+    level: 1
