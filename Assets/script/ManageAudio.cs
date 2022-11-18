@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManageAudio : MonoBehaviour
 {
     public static ManageAudio Instance;
+    public AudioClip behurt;
     // Start is called before the first frame update
       AudioSource audioSource;
     public AudioClip game_lose, game_win ;
@@ -45,5 +46,9 @@ public class ManageAudio : MonoBehaviour
     {
 
         audioSource.PlayOneShot(game_lose);
+    }
+    public void Behurt()
+    {
+        audioSource.PlayOneShot(behurt);
     }
 }

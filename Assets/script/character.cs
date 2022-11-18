@@ -10,7 +10,7 @@ public class character : MonoBehaviour
     public GameObject GameLose;
     public GameObject GameWin;
     public int  blood = 200;
-     
+    public Image bloodF;
     public static character Instance { get; private set; }
     public Vector3 get_position()
     {
@@ -102,11 +102,13 @@ public class character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bloodF.fillAmount = (float)blood / 200;
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
         main_camera.transform.position = transform.position + new Vector3(0, 0, -10);
         if (blood <= 0 && GameLose.active == false) // game lose 
         {   
             GameLose.SetActive(true);
+            
             ManageAudio.Instance.gameLose();
         }
         if (Time.time -preTime>= 60 * minute && GameWin.active == false)
@@ -167,14 +169,14 @@ public class character : MonoBehaviour
         {
             blood -= collision.gameObject.GetComponent<zombies>().GetDame();
 
+            ManageAudio.Instance.Behurt();
+
         }
     }
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.tag == "Zombie")
         {
-             
-
         }
     }
 }

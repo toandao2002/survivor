@@ -12,7 +12,7 @@ public class zombies : MonoBehaviour
     public float step;
     // Start is called before the first frame update
     
-    private int blood = 20 ;
+    private int blood = 5 ;
     public int dame ;
     
     public  int GetDame()

@@ -33,7 +33,10 @@ public class manage_zombie : MonoBehaviour
     {
         cam_pos = control_camera.Instance.get_position();
         seconds_Initialize_New_Zombie -= 0.00001f;
-
+        if (seconds_Initialize_New_Zombie <= 0.5)
+        {
+            seconds_Initialize_New_Zombie -= 0.00001f;
+        }
 
         if (Time.realtimeSinceStartup-preTime > seconds_Initialize_New_Zombie)
         {
