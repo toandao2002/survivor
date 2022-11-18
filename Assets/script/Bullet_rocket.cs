@@ -43,11 +43,10 @@ public class Bullet_rocket : ShootBullet
     {
         if (collision.gameObject.tag == "Zombie")
         {
-            Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
-
+    
     public override int GetDame()
     {
         return dame;
@@ -61,9 +60,13 @@ public class Bullet_rocket : ShootBullet
     {
         transform.position = Vector3.MoveTowards(transform.position, des, speed);
     }
+    
     public override void shoot()
     {
         // set dir  for bullet 
+/*
+        GameObject zombieObject = FindZombieNearest();
+        if (zombieObject == null) return;*/
         zombie = FindObjectOfType<zombies>();
         if (zombie != null && flag_shoot == false)
         {

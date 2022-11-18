@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class character : MonoBehaviour
 {
 
-
+    public int  blood = 200; 
     public static character Instance { get; private set; }
     public Vector3 get_position()
     {
@@ -17,7 +17,7 @@ public class character : MonoBehaviour
     public Camera main_camera;
     public float speed;
     public Image EXP;
-
+    public GameObject choseBullet;
     public List<ShootBullet> bullet_prefabs;
     //public BulletBrick bulletBrick;
     //public manage_haunrs haurs;
@@ -39,11 +39,12 @@ public class character : MonoBehaviour
     {
         preTime = (long)Time.realtimeSinceStartup;
         anim = GetComponent<Animator>();
-       
-       /* StartCoroutine(SpawnBulletBrick());
-        
-        StartCoroutine(SpawnBulletRocket());
-        StartCoroutine(SpawnBulletZuantoudan());*/
+
+        /* StartCoroutine(SpawnBulletBrick());
+
+         StartCoroutine(SpawnBulletRocket());
+         StartCoroutine(SpawnBulletZuantoudan());*/
+        StartCoroutine(SpawnBullet(BulletName.kunai));
     }
 
     IEnumerator IESpawnBulletExample()
@@ -59,56 +60,54 @@ public class character : MonoBehaviour
     {
          
         BulletName tmp =(BulletName) Enum.Parse(typeof(BulletName), bullet);
-        StartCoroutine( SpawnBulletKunai(tmp));
+        StartCoroutine( SpawnBullet(tmp));
     }
     
-    IEnumerator SpawnBulletZuantoudan()
+    IEnumerator SpawnBullet(BulletName bulletname )
     {
         while (true)
         {
-            var bullet = Instantiate(bullet_prefabs[(int)BulletName.zuanto], transform.position, Quaternion.identity);
-            bullet.shoot();
-            yield return new WaitForSeconds(3);
-        }
-    }
-    IEnumerator SpawnBulletKunai(BulletName bulletname )
-    {
-        while (true)
-        {
+            if (bulletname == BulletName.huanr)
+            {
+                ShootBullet bullet2 = null; ;
+                try {
+                    bullet2 = FindObjectOfType<manage_haunrs>().GetComponent<ShootBullet>();
+                }
+                catch
+                {
+
+                }
+                
+                if (bullet2 == null) bullet2 = Instantiate(bullet_prefabs[(int)bulletname], transform.position, Quaternion.identity);
+                bullet2.shoot();
+                break;
+            }
+            
             var bullet = Instantiate(bullet_prefabs[(int)bulletname], transform.position, Quaternion.identity);
             bullet.shoot();
+            
             yield return new WaitForSeconds(3);
         }
     }
-    IEnumerator SpawnBulletBrick()
-    {
-        while (true)
-        {
-            var bullet = Instantiate(bullet_prefabs[(int)BulletName.brick], transform.position, Quaternion.identity);
-            bullet.shoot();
-            yield return new WaitForSeconds(3);
-        }
-    }
-    IEnumerator SpawnBulletRocket()
-    {
-        while (true)
-        {
-            var bullet = Instantiate(bullet_prefabs[(int)BulletName.rocket], transform.position, Quaternion.identity);
-            bullet.shoot();
-            yield return new WaitForSeconds(1);
-        }
-    }
+     
+   
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
         main_camera.transform.position = transform.position + new Vector3(0, 0, -10);
-        
+        if (blood <= 0) // game lose 
+        {
+
+        }
+
         if (EXP.fillAmount >= 1)
         {
 
-            bullets.Add(Instantiate(bullet_prefabs[(int)BulletName.huanr], transform.position, Quaternion.identity));
+            choseBullet.GetComponentInChildren<SelectSkillPopup>().enabled = true;
+            choseBullet.SetActive(true);
+            
             EXP.fillAmount = 0;
         }
         HandleAni();
@@ -146,8 +145,9 @@ public class character : MonoBehaviour
         if (collision.gameObject.tag == "EXP")
         {
             // increase EXP
+            if (EXP.fillAmount >= 1) return; 
             EXP.fillAmount += 0.05f;
-
+            
         }
     }
 }

@@ -20,16 +20,35 @@ public class SelectSkillPopup : MonoBehaviour
     public List<frame_skill> skills;
 
     private void Awake()
-    {
-        for(int i = 0; i < data.skills.Count; i++)
+    {   
+       
+         
+    }
+
+    private void OnEnable()
+    {   
+        for (int i = 0; i < 3; i++)
         {
-            skills[i].enum_bullet = data.skills[i].enum_bullet;
-            skills[i].image.sprite = data.skills[i].sprite;
+            int ran = Random.Range(1, data.skills.Count);
+            skills[i].enum_bullet = data.skills[ran].enum_bullet;
+            skills[i].image.sprite = data.skills[ran].sprite;
             skills[i].image.SetNativeSize();
-            skills[i].name.text = ( data.skills[i].enum_bullet.ToString()) ;
-            skills[i].level = data.skills[i].level;
-            skills[i].Describe.text = data.skills[i].Describe; 
+            skills[i].name.text = (data.skills[ran].enum_bullet.ToString());
+            skills[i].name.transform.GetChild(0).GetComponent<Text>().text = (data.skills[ran].enum_bullet.ToString());
+            skills[i].level = data.skills[ran].level;
+            skills[i].Describe.text = data.skills[ran].Describe;
         }
+ 
+    }
+    private void OnDisable()
+    {
+
+        
+        
+
+    }
+    private void Update()
+    {
          
     }
 }

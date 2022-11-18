@@ -31,6 +31,23 @@ public abstract class ShootBullet : MonoBehaviour
     {
         collisionEnemyFx.Play();
     }
+    public GameObject FindZombieNearest()
+    {
+        GameObject des = null;
+        int min_dis = int.MaxValue;
+        foreach (GameObject zombie in manage_zombie.Instace.zombies)
+        {
+            if (zombie == null) continue;
+            int tmp = (int)Vector3.Distance(character.Instance.gameObject. transform.position, zombie.transform.position);
+            if (tmp < min_dis)
+            {
+                min_dis = tmp;
+                des = zombie;
+               
+            }
+        }
+        return des;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Zombie")

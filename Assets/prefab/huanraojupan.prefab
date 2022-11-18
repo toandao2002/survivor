@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21b8ba889bdd0e439abb673bf60307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.02
+  level: 0
+  collisionEnemyFx: {fileID: 0}
+  speed: 0.04
   speed_angle: 1000
 --- !u!58 &3545922574626007431
 CircleCollider2D:

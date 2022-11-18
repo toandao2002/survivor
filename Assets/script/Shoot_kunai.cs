@@ -28,6 +28,7 @@ public class Shoot_kunai : ShootBullet
         {
             Destroy(this.gameObject);
         }
+
             
        
     }
@@ -54,9 +55,13 @@ public class Shoot_kunai : ShootBullet
     {
         dame = value;
     }
-
+     
     public override void shoot( )
     {
+
+        //GameObject zombieObject = FindZombieNearest();
+       // if (zombieObject == null) return;
+        // zombie = gameObject.GetComponent<zombies>();
         zombie = FindObjectOfType<zombies>();
         if (zombie != null && flag_shoot == false)
         {
@@ -74,8 +79,9 @@ public class Shoot_kunai : ShootBullet
         else if (flag_shoot == false)
         {
             flag_shoot = true;
-            Vector3 randompos = Random.insideUnitSphere;
+            Vector3 randompos = Random.insideUnitSphere.normalized;
             randompos.z = 0;
+            
             des = character.Instance.get_position() + randompos;
             Vector3 dir = des;
 

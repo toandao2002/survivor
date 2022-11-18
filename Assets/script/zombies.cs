@@ -48,8 +48,16 @@ public class zombies : MonoBehaviour
             int tmp = Int32.Parse(UI.Instance.amount_zombie_die.text);
             tmp++;
             UI.Instance.amount_zombie_die.text = tmp.ToString();
-           
 
+            foreach (GameObject zombie in manage_zombie.Instace.zombies)
+            {
+
+                if (zombie == this.gameObject)
+                {
+                    manage_zombie.Instace.zombies.Remove(zombie);
+                    break;
+                }
+            }
             Destroy(this.gameObject);
         }
     }

@@ -22,6 +22,10 @@ public class HandleButton : MonoBehaviour
     {   
 
         character.Instance.AddNewBullet(nameBullet.text);
+     
+        transform.parent.parent.parent.parent.gameObject.SetActive(false);
+        transform.parent.parent.parent.GetComponent<SelectSkillPopup>().enabled = false;
+
     }
 
 }

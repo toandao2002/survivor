@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class manage_haunrs :  ShootBullet
 {
+    public static manage_haunrs Instance; 
+     
     zombies zombie;
     public float speed;
     int dame = 20;
@@ -36,21 +38,33 @@ public class manage_haunrs :  ShootBullet
             
             tmp++;
         }
+        
 
     }
     public override void shoot()
     {
 
-        InitShoot();
+        angle = (float)360f / amount;
 
+        InitShoot();
+        amount++;
+
+    }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+           
+        }
+        amount = 2;
+            
     }
     // Start is called before the first frame update
     void Start()
     {
       
-        angle = (float)360f / amount;
-    
-        InitShoot();
+        
     }
 
     // Update is called once per frame

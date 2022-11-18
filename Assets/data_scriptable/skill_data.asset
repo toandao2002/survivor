@@ -15,11 +15,11 @@ MonoBehaviour:
   skills:
   - enum_bullet: 0
     sprite: {fileID: 21300000, guid: aa072ce7a8016ea47a9aea338f569eac, type: 3}
-    Describe: "B\u1EA5m v\xE0o \u0111i"
+    Describe: "th\xEAm m\u1ED9t kunai"
     level: 1
   - enum_bullet: 1
     sprite: {fileID: 21300000, guid: 64c890419a14a824189d5e4c0b9b9468, type: 3}
-    Describe: hihihi
+    Describe: "Th\xEAm m\u1ED9t con quay huanrs "
     level: 1
   - enum_bullet: 2
     sprite: {fileID: 21300000, guid: 3d9f61c58fd26134f887a8d88e31cd09, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
     level: 1
   - enum_bullet: 3
     sprite: {fileID: 21300000, guid: cda08683c9f48814385cf4fc874982d1, type: 3}
-    Describe: 
+    Describe: 'roc ket '
     level: 1
   - enum_bullet: 4
     sprite: {fileID: 21300000, guid: af9dcec8eccc08946b13ac7838a293d4, type: 3}
