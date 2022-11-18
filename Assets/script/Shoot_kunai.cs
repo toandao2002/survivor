@@ -6,7 +6,7 @@ public class Shoot_kunai : ShootBullet
 {
     zombies zombie;
     public float speed;
-    int dame =20;
+    public int dame =20;
     Vector3 des ;
     bool flag_shoot = false;
     public long timeInitBullet = 2;

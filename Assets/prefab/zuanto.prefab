@@ -156,7 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c3cbe328b0a0e4d979565bcc58941c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_sample: 1
-  dame: 20
+  level: 0
+  collisionEnemyFx: {fileID: 0}
+  dame: 10
   speed: 12
+  time_destroy: 3
   timeInitBullet: 2

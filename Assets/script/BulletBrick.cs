@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletBrick :   ShootBullet
 {
     public float speed =500;
-    int dame = 20;
+    public int  dame = 10;
     
     public long timeInitBullet = 2;
     float preTime = 0;

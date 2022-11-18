@@ -6,7 +6,7 @@ public class huanraojupan :   ShootBullet
 {
     zombies zombie;
     public float speed, speed_angle;
-    int dame = 20;
+    public int dame = 10;
   /*  public bool is_sample = false;*/
    
     float angle ;

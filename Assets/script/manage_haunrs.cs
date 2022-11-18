@@ -63,10 +63,18 @@ public class manage_haunrs :  ShootBullet
     // Start is called before the first frame update
     void Start()
     {
-      
-        
-    }
+        StartCoroutine(PlaySound());
 
+
+    }
+    IEnumerator PlaySound()
+    {
+        while (true)
+        {
+            ManageAudio.Instance.playSound((int)BulletName.huanr);
+            yield return new WaitForSeconds(1);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -84,6 +92,8 @@ public class manage_haunrs :  ShootBullet
         }
         angle_speed += speed;
         if (angle_speed >= 360) angle_speed = 360;
+        
+        
     }
     public override int GetDame()
     {

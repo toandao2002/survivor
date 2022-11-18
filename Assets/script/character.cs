@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class character : MonoBehaviour
 {
-
-    public int  blood = 200; 
+    public int minute;
+    public GameObject GameLose;
+    public GameObject GameWin;
+    public int  blood = 200;
+     
     public static character Instance { get; private set; }
     public Vector3 get_position()
     {
@@ -33,11 +36,14 @@ public class character : MonoBehaviour
     {
         Instance = this;
         bullets = new List<ShootBullet>();
-       
+        /*gameObject.SetActive(false);
+        GameWin.SetActive(false);*/
+
     }
+    
     void Start()
     {
-        preTime = (long)Time.realtimeSinceStartup;
+        preTime = (long)Time.time;
         anim = GetComponent<Animator>();
 
         /* StartCoroutine(SpawnBulletBrick());
@@ -85,6 +91,7 @@ public class character : MonoBehaviour
             
             var bullet = Instantiate(bullet_prefabs[(int)bulletname], transform.position, Quaternion.identity);
             bullet.shoot();
+            ManageAudio.Instance.playSound((int) bulletname);
             
             yield return new WaitForSeconds(3);
         }
@@ -97,9 +104,16 @@ public class character : MonoBehaviour
     {
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
         main_camera.transform.position = transform.position + new Vector3(0, 0, -10);
-        if (blood <= 0) // game lose 
+        if (blood <= 0 && GameLose.active == false) // game lose 
+        {   
+            GameLose.SetActive(true);
+            ManageAudio.Instance.gameLose();
+        }
+        if (Time.time -preTime>= 60 * minute && GameWin.active == false)
         {
+            GameWin.SetActive(true);
 
+            ManageAudio.Instance.gameWin();
         }
 
         if (EXP.fillAmount >= 1)
@@ -148,6 +162,19 @@ public class character : MonoBehaviour
             if (EXP.fillAmount >= 1) return; 
             EXP.fillAmount += 0.05f;
             
+        }
+        if (collision.gameObject.tag =="Zombie")
+        {
+            blood -= collision.gameObject.GetComponent<zombies>().GetDame();
+
+        }
+    }
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag == "Zombie")
+        {
+             
+
         }
     }
 }

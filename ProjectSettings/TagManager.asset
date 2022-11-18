@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - character
-  - 
+  - setting
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: character
     uniqueID: 295575939
+    locked: 0
+  - name: setting
+    uniqueID: 2038601613
     locked: 0

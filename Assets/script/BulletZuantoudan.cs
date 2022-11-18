@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletZuantoudan : ShootBullet
 {   
-    public int  dame = 20   ;
+    public int  dame = 10   ;
     public float speed=0.03f;
-    public int time_destroy = 3;
+    public int time_destroy =4;
     Vector3 camera_pos, dir ;
     public long timeInitBullet = 2;
     float preTime = 0 , width , height ;

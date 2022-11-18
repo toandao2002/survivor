@@ -8,19 +8,19 @@ public class zombies : MonoBehaviour
 {
     public GameObject EXP;
    
-    
+   
     public float step;
     // Start is called before the first frame update
-    character character;
-    private int blood = 20 ;
-    private int dame;
     
-    private int GetDame()
+    private int blood = 20 ;
+    public int dame ;
+    
+    public  int GetDame()
     {
         return dame;
     }
 
-    private void SetDame(int value)
+    public void SetDame(int value)
     {
         dame = value;
     }
@@ -28,10 +28,7 @@ public class zombies : MonoBehaviour
     private bool isCollide = false;
     void Start()
     {
-       
-        
-
-        character = FindObjectOfType<character>();
+      
     }
 
     // Update is called once per frame
@@ -64,7 +61,7 @@ public class zombies : MonoBehaviour
     public void movetoCharacter()
     {
          
-        transform.position = Vector3.MoveTowards(transform.position, character.transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, character.Instance.transform.position, step);
 
     }
      

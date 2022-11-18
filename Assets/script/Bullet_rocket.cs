@@ -27,23 +27,24 @@ public class Bullet_rocket : ShootBullet
     // Update is called once per frame
     void Update()
     {
- 
-        
-        
 
+
+
+        move();
         if (transform.position == des)
         {
+            
             Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        move();
+        
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Zombie")
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
     
@@ -92,6 +93,7 @@ public class Bullet_rocket : ShootBullet
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, (angle - 90));
         }
+        des.z = 0;
     }
            
           

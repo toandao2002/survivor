@@ -6,7 +6,7 @@ public class manage_zombie : MonoBehaviour
 {
     // Start is called before the first frame update
     public static manage_zombie Instace;
-
+    public GameObject zombie2;
     float widthcam, heightcam;
     Camera cam;
     Vector3 cam_pos;
@@ -32,7 +32,7 @@ public class manage_zombie : MonoBehaviour
     void Update()
     {
         cam_pos = control_camera.Instance.get_position();
-
+        seconds_Initialize_New_Zombie -= 0.00001f;
 
 
         if (Time.realtimeSinceStartup-preTime > seconds_Initialize_New_Zombie)
@@ -41,6 +41,7 @@ public class manage_zombie : MonoBehaviour
             float y = Random.Range(cam_pos.y - heightcam / 2  , cam_pos.y + heightcam /2 );
              
             zombies.Add(Instantiate(zombie, new Vector3(x, y, 0), Quaternion.identity));
+            zombies.Add(Instantiate(zombie2, new Vector3(x, y, 0), Quaternion.identity));
             preTime = Time.realtimeSinceStartup;
             
         }
