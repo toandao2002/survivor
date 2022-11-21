@@ -11,6 +11,7 @@ public enum SkillName
 [System.Serializable]
 public class Skill
 {
+    public int id;
     public BulletName enum_bullet;
     public Sprite sprite;
     public string  Describe;

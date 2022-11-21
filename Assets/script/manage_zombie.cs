@@ -40,8 +40,9 @@ public class manage_zombie : MonoBehaviour
         {
             seconds_Initialize_New_Zombie += 0.00001f;
         }
-      
-        type_spawn = Random.Range(0,2);
+        if (Time.time < 10)
+            type_spawn = Random.Range(0,2);
+        else type_spawn = Random.Range(0, 3);
         if (Time.time - preTime > seconds_Initialize_New_Zombie)
         {
             if (type_spawn == 0)
@@ -51,6 +52,10 @@ public class manage_zombie : MonoBehaviour
             else if (type_spawn == 1)
             {
                 spawn_3_zombie_folow_row();
+            }
+            else if (type_spawn == 2)
+            {   
+                spawn_4_zombie_folow_Circle();
             }
             preTime = Time.time;
             
@@ -81,6 +86,7 @@ public class manage_zombie : MonoBehaviour
     {
         int id = Random.Range(0, prefab_zombie.Count);
         float x = 0;
+        
         if (l_or_right)
         {
             l_or_right = !l_or_right;
@@ -95,6 +101,39 @@ public class manage_zombie : MonoBehaviour
         zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y, 0), Quaternion.identity));
         zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x+1, y+1, 0), Quaternion.identity));
         zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x+2, y+2, 0), Quaternion.identity));
+
+    }
+    void spawn_4_zombie_folow_Circle()
+    {
+        int id = Random.Range(0, prefab_zombie.Count);
+        float x = 0;
+         
+         x = cam_pos.x + widthcam / 2;
+
+        float y = cam_pos.y  ;
+
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y+0.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y-0.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y+1, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y-1, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y+1.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y-1.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y+2, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y-2, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x ,y+2.5f , 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x,y -2.5f, 0), Quaternion.identity));
+        x = cam_pos.x - widthcam / 2;
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y + 0.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y - 0.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y + 1, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y - 1, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y + 1.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y - 1.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y + 2, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y - 2, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y + 2.5f, 0), Quaternion.identity));
+        zombies.Add(Instantiate(prefab_zombie[id], new Vector3(x, y - 2.5f, 0), Quaternion.identity));
+
 
     }
     private void OnDisable()

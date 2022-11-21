@@ -11,11 +11,9 @@ public class character : MonoBehaviour
     public GameObject GameWin;
     public int  blood = 200;
     public Image bloodF;
+    public List<Sprite> Item ;
     public static character Instance { get; private set; }
-    public Vector3 get_position()
-    {
-        return transform.position;
-    }
+    
     List<ShootBullet> bullets;
     public Camera main_camera;
     public float speed;
@@ -33,8 +31,13 @@ public class character : MonoBehaviour
     public long timeInitBullet, preTime;
     // Start is called before the first frame update
     private void Awake()
-    {
-        Instance = this;
+    {   
+        if (Instance == null)
+        {
+            Item = new List<Sprite>();
+            Instance = this;
+        }
+        
         bullets = new List<ShootBullet>();
         Time.timeScale = 1;
         /*gameObject.SetActive(false);
@@ -179,5 +182,9 @@ public class character : MonoBehaviour
         if (collision.gameObject.tag == "Zombie")
         {
         }
+    }
+    public Vector3 get_position()
+    {
+        return transform.position;
     }
 }
