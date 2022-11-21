@@ -26,6 +26,7 @@ public class Setting : MonoBehaviour
     public void GameContinue()
     {
         setting.SetActive(false);
+        
         Time.timeScale = 1f;
     }
     

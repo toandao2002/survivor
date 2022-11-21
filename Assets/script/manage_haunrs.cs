@@ -91,7 +91,7 @@ public class manage_haunrs :  ShootBullet
              huanrs[i]. transform.position = center_circle + new Vector3(Mathf.Cos(angle*  (i) * 3.14f / 180 + angle_speed) * radius, Mathf.Sin(angle * (i) * 3.14f / 180 + angle_speed) * radius, 0);   
         }
         angle_speed += speed;
-        if (angle_speed >= 360) angle_speed = 360;
+        if (angle_speed >= 360) angle_speed = angle_speed% 360;
         
         
     }

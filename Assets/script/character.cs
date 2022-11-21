@@ -36,11 +36,12 @@ public class character : MonoBehaviour
     {
         Instance = this;
         bullets = new List<ShootBullet>();
+        Time.timeScale = 1;
         /*gameObject.SetActive(false);
         GameWin.SetActive(false);*/
 
     }
-    
+     
     void Start()
     {
         preTime = (long)Time.time;
@@ -167,7 +168,7 @@ public class character : MonoBehaviour
         }
         if (collision.gameObject.tag =="Zombie")
         {
-            blood -= collision.gameObject.GetComponent<zombies>().GetDame();
+            blood -= collision.gameObject.GetComponent<ZombieCommon>().GetDame();
 
             ManageAudio.Instance.Behurt();
 

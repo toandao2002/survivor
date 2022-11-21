@@ -11,8 +11,10 @@ public class Replay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         time = GetComponent<Text>();
-        time.text = TotalTime.text;
+        if (time != null)
+            time.text = TotalTime.text;
     }
 
     // Update is called once per frame

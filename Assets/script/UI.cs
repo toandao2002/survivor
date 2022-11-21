@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
-{
+{   
+    
     public static UI Instance { get; private set; }
     public Text time;
     public Text amount_zombie_die;
@@ -18,12 +19,17 @@ public class UI : MonoBehaviour
     }
     void Start()
     {
-        time_start = Time.realtimeSinceStartup;
+        time_start = Time.time;
         amount_zombie_die.text = "0";
     }
-    void update_time_play()
+    public void SetTimeScale(float t)
     {
-        float tmp = Time.realtimeSinceStartup - time_start;
+        Time.timeScale = t;
+    }
+    void update_time_play()
+    {   
+        float tmp = Time.time - time_start;
+    
         h = (int)tmp / 60;
         s = (int)(tmp) % 60;
         

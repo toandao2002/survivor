@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shoot_kunai : ShootBullet
 {
-    zombies zombie;
+    ZombieCommon zombie;
     public float speed;
     public int dame =20;
     Vector3 des ;
@@ -59,10 +59,10 @@ public class Shoot_kunai : ShootBullet
     public override void shoot( )
     {
 
-        //GameObject zombieObject = FindZombieNearest();
-       // if (zombieObject == null) return;
-        // zombie = gameObject.GetComponent<zombies>();
-        zombie = FindObjectOfType<zombies>();
+        GameObject zombieObject = FindZombieNearest();
+        if (zombieObject != null)
+            zombie = zombieObject.GetComponent<ZombieCommon>();
+       // zombie = FindObjectOfType<zombies>();
         if (zombie != null && flag_shoot == false)
         {
             flag_shoot = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet_rocket : ShootBullet
 {
-    zombies zombie;
+    ZombieCommon zombie;
     public GameObject Explosion;
     public float speed;
     int dame = 20;
@@ -65,10 +65,10 @@ public class Bullet_rocket : ShootBullet
     public override void shoot()
     {
         // set dir  for bullet 
-/*
         GameObject zombieObject = FindZombieNearest();
-        if (zombieObject == null) return;*/
-        zombie = FindObjectOfType<zombies>();
+        if (zombieObject != null)
+            zombie = zombieObject.GetComponent<ZombieCommon>();
+        // zombie = FindObjectOfType<zombies>();
         if (zombie != null && flag_shoot == false)
         {
             flag_shoot = true;

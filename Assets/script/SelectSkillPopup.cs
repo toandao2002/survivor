@@ -38,13 +38,14 @@ public class SelectSkillPopup : MonoBehaviour
             skills[i].level = data.skills[ran].level;
             skills[i].Describe.text = data.skills[ran].Describe;
         }
+        Time.timeScale = 0; // pause game 
  
     }
     private void OnDisable()
     {
 
-        
-        
+
+        Time.timeScale = 1; //continue game
 
     }
     private void Update()

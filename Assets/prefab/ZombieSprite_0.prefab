@@ -115,14 +115,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893604424067070427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6707b92d85490942bb12458ea2dbc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
-  step: 0.005
+  isCollide: 0
+  blood: 5
   dame: 5
+  step: 0.005
+  ani: {fileID: 0}
 --- !u!60 &1893604424067069984
 PolygonCollider2D:
   m_ObjectHideFlags: 0
