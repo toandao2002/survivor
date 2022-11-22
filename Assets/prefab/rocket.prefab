@@ -130,10 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793496b144dd83b45ae55f010167ede6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   collisionEnemyFx: {fileID: 0}
-  is_sample: 1
   Explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
-  speed: 0.13
+  speed: 0.2
   timeInitBullet: 1
 --- !u!61 &2495524414845600218
 BoxCollider2D:

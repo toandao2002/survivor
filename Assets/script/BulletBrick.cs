@@ -29,7 +29,13 @@ public class BulletBrick :   ShootBullet
     // Start is called before the first frame update
     void Start()
     {
+        flag_shoot = false;
         Rig = GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable()
+    {
+         
+        flag_shoot = false;
     }
 
     // Update is called once per frame
@@ -39,7 +45,7 @@ public class BulletBrick :   ShootBullet
         move();
         if (OutOfSreen())
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
     void move()

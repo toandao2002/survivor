@@ -13,11 +13,16 @@ public class Shoot_kunai : ShootBullet
     float preTime = 0;
     private void Awake()
     {
-         
+        
+    }
+    private void OnEnable()
+    {
+        zombie = null;
+        flag_shoot = false;
     }
     private void Start()
     {
-         
+        
     }
     // Update is called once per frame
     void Update()
@@ -26,7 +31,7 @@ public class Shoot_kunai : ShootBullet
         move();
         if (OutOfSreen())
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
 
             
@@ -42,7 +47,7 @@ public class Shoot_kunai : ShootBullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if  (collision.gameObject.tag == "Zombie"){
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
        }
     }
 

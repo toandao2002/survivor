@@ -5,7 +5,9 @@ using UnityEngine;
 public class ManageAudio : MonoBehaviour
 {
     public static ManageAudio Instance;
+    public AudioClip Exp;
     public AudioClip behurt;
+    public AudioClip hitZombie;
     // Start is called before the first frame update
       AudioSource audioSource;
     public AudioClip game_lose, game_win ;
@@ -31,10 +33,19 @@ public class ManageAudio : MonoBehaviour
     {
         
     }
+    public void HitZombie()
+    {
+        audioSource.PlayOneShot(hitZombie);
+    }
     public void playSound(int i )
     {
          
         audioSource.PlayOneShot(audioBullets[i]);
+    }
+    public void EXP( )
+    {
+
+        audioSource.PlayOneShot(Exp);
     }
     public void gameWin()
     {

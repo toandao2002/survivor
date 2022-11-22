@@ -18,7 +18,13 @@ public class Bullet_rocket : ShootBullet
     }
     private void Start()
     {
-
+        zombie = null;
+        flag_shoot = false;
+    }
+    private void OnEnable()
+    {
+        zombie = null;
+        flag_shoot = false;
     }
 
 
@@ -35,7 +41,7 @@ public class Bullet_rocket : ShootBullet
         {
             
             Instantiate(Explosion, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
         
 
@@ -44,7 +50,7 @@ public class Bullet_rocket : ShootBullet
     {
         if (collision.gameObject.tag == "Zombie")
         {
-            //Destroy(this.gameObject);
+             
         }
     }
     

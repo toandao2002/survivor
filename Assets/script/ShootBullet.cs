@@ -18,7 +18,7 @@ public abstract class ShootBullet : MonoBehaviour
     public int level;
     public ParticleSystem collisionEnemyFx;
     float widthcam, heightcam;
-    Camera cam ;
+    public Camera cam ;
     Vector3 cam_pos ;
     public abstract int GetDame();
     public abstract void SetDame(int value);

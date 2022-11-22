@@ -10,7 +10,7 @@ public class BulletZuantoudan : ShootBullet
     Vector3 camera_pos, dir ;
     public long timeInitBullet = 2;
     float preTime = 0 , width , height ;
-    Camera cam;
+    
     public override int GetDame()
     {
         return dame; 
@@ -39,12 +39,16 @@ public class BulletZuantoudan : ShootBullet
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
     }
+    private void OnEnable()
+    {
+        preTime = Time.time;
+    }
 
     // Update is called once per frame
     void Update()
     {
        
-        if (Time.time -preTime>= time_destroy) Destroy(gameObject);
+        if (Time.time -preTime>= time_destroy) this.gameObject.SetActive(false);
         move();
     }
     void move()

@@ -162,14 +162,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5606674465652464786}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ee37ae136fc282459b0663464f8aef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
   isCollide: 0
+  die: 0
   blood: 5
   dame: 20
-  step: 0.01
+  step: 0.005
   ani: {fileID: 0}
+  ParticleLoseBloodZombie: {fileID: 1844780192599652067, guid: 34119e92aa7bbfa439df33ac8de48333, type: 3}
+  Collider2D: {fileID: 0}
+  AmountLoseBlood: {fileID: 1471933491296059384, guid: dc8ed5d35d471394eb7f825bbdb87ac8, type: 3}

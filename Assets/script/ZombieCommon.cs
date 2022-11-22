@@ -2,24 +2,48 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZombieCommon : MonoBehaviour
 {
 
     public GameObject EXP;
-    public bool isCollide = false;
+    public bool isCollide = false, die;
     public  int blood = 5;
     public int dame;
     public float step;
     public Animator ani;
+    public GameObject ParticleLoseBloodZombie;
     Vector3 scaleFirst;
+    public Collider2D Collider2D;
+    public Text AmountLoseBlood;
     // Start is called before the first frame update
     private void Awake()
     {
-        this.enabled = true;
+        if (Collider2D == null)
+        {
+            Collider2D = GetComponent<Collider2D>();
+        }
+    }
+    private void OnEnable()
+    {
+        Debug.LogError(gameObject.name);
+        blood = 20;
+        Collider2D.enabled = true;
+
+        gameObject.tag = "Zombie";
+        die = false;
+        isCollide = false;
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+    }
+    public  void OnDisable()
+    {
+         
     }
     void Start()
-    {
+    {   
+        
         scaleFirst = transform.localScale;
         ani = GetComponent<Animator>();
     }
@@ -30,10 +54,10 @@ public class ZombieCommon : MonoBehaviour
         
          if (character.Instance.blood <= 0) Time.timeScale = 0f;
         
-        if (blood <= 0)
+        if (blood <= 0  )
         {
             manage_zombie.Instace.zombies.Remove(this.gameObject);
-            DestroyImmediate(this.gameObject.GetComponent<Collider2D>());
+            Collider2D.enabled= false;
             this.gameObject.tag = "Untagged";
             Die();
             
@@ -64,11 +88,18 @@ public class ZombieCommon : MonoBehaviour
         ani.SetBool("Die", true);
         DG.Tweening.DOVirtual.DelayedCall(1.2f, () =>
         {
-            int tmp = Int32.Parse(UI.Instance.amount_zombie_die.text);
-            tmp++;
-            UI.Instance.amount_zombie_die.text = tmp.ToString();
-            Instantiate(EXP, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            
+            if (die == false)
+            {
+                int tmp = Int32.Parse(UI.Instance.amount_zombie_die.text);
+                tmp++;
+                UI.Instance.amount_zombie_die.text = tmp.ToString();
+                die = true;
+                manage_zombie.Instace.zombies.Remove(this.gameObject);
+                Instantiate(EXP, transform.position, Quaternion.identity);
+            }
+            
+            this.gameObject.SetActive(false);
         });
     }
     public void movetoCharacter()
@@ -98,6 +129,12 @@ public class ZombieCommon : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             int tmp = collision.gameObject.GetComponent<ShootBullet>().GetDame();
+            Instantiate(ParticleLoseBloodZombie, transform.position, Quaternion.identity);
+            Text blood_text_tmp = Instantiate(AmountLoseBlood, transform.position, Quaternion.identity);
+            blood_text_tmp.text = collision.gameObject.GetComponent<ShootBullet>().GetDame().ToString();
+            blood_text_tmp.transform.GetChild(0).GetComponent<Text>().text = collision.gameObject.GetComponent<ShootBullet>().GetDame().ToString();
+            ManageAudio.Instance.HitZombie();
+            blood_text_tmp.transform.parent = GameWorldSpace.Instance.gameObject.transform;
             blood -= tmp;
         }
     }

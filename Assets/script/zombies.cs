@@ -6,20 +6,25 @@ using UnityEngine.UI;
 
 public class zombies : ZombieCommon
 {
-    
-   
-   
-    
+
+
+
+
     // Start is called before the first frame update
-    
-    
-    
-    
-    
 
-     
-    
 
+
+
+
+
+
+    private void OnEnable()
+    {
+        blood = 20;
+        gameObject.tag = "Zombie";
+        isCollide = false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +39,7 @@ public class zombies : ZombieCommon
         {
             Attack();
         }
-        if (blood <= 0)
+        if (blood <= 0  )
         {
 
             Instantiate(EXP, transform.position, Quaternion.identity);
@@ -45,7 +50,7 @@ public class zombies : ZombieCommon
 
 
             manage_zombie.Instace.zombies.Remove(this.gameObject);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false); 
 
         }
 

@@ -21,12 +21,11 @@ public class Increase_EXP : MonoBehaviour
     {
         if (isCollide == true)
         {
-            if (ani.GetCurrentAnimatorStateInfo(0).length <
-            ani.GetCurrentAnimatorStateInfo(0).normalizedTime)
+            DG.Tweening.DOVirtual.DelayedCall(0.8f, () =>
             {
                 Destroy(this.transform.parent.gameObject);
-             
-            }
+            });
+ 
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

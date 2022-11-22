@@ -12,6 +12,7 @@ public class character : MonoBehaviour
     public int  blood = 200;
     public Image bloodF;
     public List<Sprite> Item ;
+    public GameObject ParticleLoseBlood;
     public static character Instance { get; private set; }
     
     List<ShootBullet> bullets;
@@ -61,8 +62,9 @@ public class character : MonoBehaviour
     {
         while (true)
         {
-            var bullet = Instantiate(bullet_prefabs[(int)BulletName.example], transform.position, Quaternion.identity);
-          //  bullet.shoot();
+            var bullet = ObjectpoolBullet.Instance.GetPooledObject((int)(BulletName.kunai));
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<ShootBullet>().shoot();
             yield return new WaitForSeconds(3);
         }
     }
@@ -92,9 +94,10 @@ public class character : MonoBehaviour
                 bullet2.shoot();
                 break;
             }
-            
-            var bullet = Instantiate(bullet_prefabs[(int)bulletname], transform.position, Quaternion.identity);
-            bullet.shoot();
+
+            var bullet = ObjectpoolBullet.Instance.GetPooledObject((int)(bulletname));
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<ShootBullet>().shoot();
             ManageAudio.Instance.playSound((int) bulletname);
             
             yield return new WaitForSeconds(3);
@@ -165,24 +168,33 @@ public class character : MonoBehaviour
         if (collision.gameObject.tag == "EXP")
         {
             // increase EXP
-            if (EXP.fillAmount >= 1) return; 
+            if (EXP.fillAmount >= 1) return;
+            ManageAudio.Instance.EXP();
             EXP.fillAmount += 0.05f;
             
         }
         if (collision.gameObject.tag =="Zombie")
         {
-            blood -= collision.gameObject.GetComponent<ZombieCommon>().GetDame();
+            
 
+        }
+    }
+    float timeBehurt;
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (timeBehurt == 0) timeBehurt = Time.time;
+        if (collision.gameObject.tag == "Zombie" && Time.time - timeBehurt > 0.5)
+        {
+            timeBehurt = Time.time;
+            blood -= collision.gameObject.GetComponent<ZombieCommon>().GetDame();
+            Instantiate(ParticleLoseBlood, transform.position, Quaternion.identity);
             ManageAudio.Instance.Behurt();
 
         }
     }
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.tag == "Zombie")
-        {
-        }
-    }
+    
+    
+
     public Vector3 get_position()
     {
         return transform.position;

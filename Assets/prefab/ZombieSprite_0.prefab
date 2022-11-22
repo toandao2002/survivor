@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1893604424067069990}
   - component: {fileID: 1893604424067069989}
   - component: {fileID: 1893604424067069988}
-  - component: {fileID: 1893604424067069984}
   - component: {fileID: 1893604424067069985}
+  - component: {fileID: -585377965941146649}
   m_Layer: 0
   m_Name: ZombieSprite_0
   m_TagString: Zombie
@@ -115,54 +115,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893604424067070427}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6707b92d85490942bb12458ea2dbc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
   isCollide: 0
+  die: 0
   blood: 5
   dame: 5
   step: 0.005
   ani: {fileID: 0}
---- !u!60 &1893604424067069984
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893604424067070427}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.17999999, y: 0.01}
-      - {x: 0.21, y: 0.28}
-      - {x: 0.12, y: 0.32}
-      - {x: -0.14, y: 0.32}
-      - {x: -0.22, y: 0.22}
-      - {x: -0.22999999, y: 0.089999996}
-      - {x: -0.22999999, y: -0.26999998}
-      - {x: -0.14999999, y: -0.32}
-      - {x: 0.14999999, y: -0.32}
-      - {x: 0.19999999, y: -0.31}
-      - {x: 0.25, y: -0.17}
-      - {x: 0.25, y: -0.03}
+  ParticleLoseBloodZombie: {fileID: 1844780192599652067, guid: 34119e92aa7bbfa439df33ac8de48333, type: 3}
+  Collider2D: {fileID: 0}
+  AmountLoseBlood: {fileID: 1471933491296059384, guid: dc8ed5d35d471394eb7f825bbdb87ac8, type: 3}
 --- !u!50 &1893604424067069985
 Rigidbody2D:
   serializedVersion: 4
@@ -184,3 +151,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &-585377965941146649
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893604424067070427}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0108034015, y: -0.0097230375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3158983, y: 0.4563424}
+  m_EdgeRadius: 0
