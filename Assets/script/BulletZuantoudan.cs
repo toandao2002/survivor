@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BulletZuantoudan : ShootBullet
 {   
-    public int  dame = 10   ;
+    public static int dame= 10;
     public float speed=0.03f;
     public int time_destroy =4;
     Vector3 camera_pos, dir ;
-    public long timeInitBullet = 2;
+    public long timeInitBullet = 3;
     float preTime = 0 , width , height ;
     
     public override int GetDame()
@@ -35,7 +35,7 @@ public class BulletZuantoudan : ShootBullet
         dir.Normalize();
         preTime = Time.time;
 
-        cam = control_camera.Instance.GetCamera();
+        cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
     }
@@ -53,7 +53,7 @@ public class BulletZuantoudan : ShootBullet
     }
     void move()
     {
-        camera_pos = control_camera.Instance.get_position();
+        camera_pos = cam.transform.position;
         
         if (transform.position.x > camera_pos.x + width / 2)
         {
@@ -78,5 +78,9 @@ public class BulletZuantoudan : ShootBullet
 
         transform.Translate(dir * speed * Time.deltaTime);
         transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, angle2);
+    }
+    public override long get_init_bullet()
+    {
+        return timeInitBullet;
     }
 }

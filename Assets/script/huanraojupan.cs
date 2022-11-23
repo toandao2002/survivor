@@ -6,9 +6,10 @@ public class huanraojupan :   ShootBullet
 {
     zombies zombie;
     public float speed, speed_angle;
-    public int dame = 10;
-  /*  public bool is_sample = false;*/
-   
+    public static int dame = 10 ;
+    public long  timeInitBullet= 2;
+    /*  public bool is_sample = false;*/
+
     float angle ;
     Vector3 center_circle;
     public override void shoot()
@@ -47,5 +48,9 @@ public class huanraojupan :   ShootBullet
     public override void SetDame(int value)
     {
         dame = value;
+    }
+    public override long get_init_bullet()
+    {
+        return timeInitBullet;
     }
 }

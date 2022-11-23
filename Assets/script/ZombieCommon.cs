@@ -17,6 +17,7 @@ public class ZombieCommon : MonoBehaviour
     Vector3 scaleFirst;
     public Collider2D Collider2D;
     public Text AmountLoseBlood;
+    public bool home = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class ZombieCommon : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.LogError(gameObject.name);
+        
         blood = 20;
         Collider2D.enabled = true;
 
@@ -104,15 +105,12 @@ public class ZombieCommon : MonoBehaviour
     }
     public void movetoCharacter()
     {
-        Vector3 dir =  character.Instance.get_position() - transform.position ;
-
-
-
+        if (home == true) return;
+            Vector3 dir =  character.Instance.get_position() - transform.position ;
         float angle = Vector2.Angle(dir, Vector2.up);
         if (dir.x > 0)
             transform.localScale = new Vector3(scaleFirst.x, transform.localScale.y, transform.localScale.z);
         else transform.localScale = new Vector3(scaleFirst.x * -1, transform.localScale.y, transform.localScale.z);
-
 
         transform.position = Vector3.MoveTowards(transform.position, character.Instance.transform.position, step* Time.timeScale);
 
@@ -133,6 +131,7 @@ public class ZombieCommon : MonoBehaviour
             Text blood_text_tmp = Instantiate(AmountLoseBlood, transform.position, Quaternion.identity);
             blood_text_tmp.text = collision.gameObject.GetComponent<ShootBullet>().GetDame().ToString();
             blood_text_tmp.transform.GetChild(0).GetComponent<Text>().text = collision.gameObject.GetComponent<ShootBullet>().GetDame().ToString();
+             
             ManageAudio.Instance.HitZombie();
             blood_text_tmp.transform.parent = GameWorldSpace.Instance.gameObject.transform;
             blood -= tmp;

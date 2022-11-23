@@ -9,7 +9,7 @@ public class ObjectpoolBullet : MonoBehaviour
     Dictionary<int, List<GameObject>> PooledObject = new Dictionary<int, List<GameObject>>();
     [SerializeField] private List <GameObject> BulletPrefabs;
      
-    int amountTopool = 20;
+    
     private void Awake()
     {
         if (Instance == null)

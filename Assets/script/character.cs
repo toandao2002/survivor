@@ -48,6 +48,11 @@ public class character : MonoBehaviour
      
     void Start()
     {
+        if (Instance == null)
+        {
+            Item = new List<Sprite>();
+            Instance = this;
+        }
         preTime = (long)Time.time;
         anim = GetComponent<Animator>();
 
@@ -68,13 +73,20 @@ public class character : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
-    public   void AddNewBullet(string bullet)
+    public   void AddNewBullet(BulletName bullet)
     {
-         
-        BulletName tmp =(BulletName) Enum.Parse(typeof(BulletName), bullet);
-        StartCoroutine( SpawnBullet(tmp));
+          
+        StartCoroutine( SpawnBullet(bullet));
     }
-    
+    public void IncreaseDame(BulletName bullet)
+    {
+        bullet_prefabs[(int)bullet].SetDame((int ) (bullet_prefabs[(int)bullet].GetDame()* 1.3f));
+    }
+    public void IncreaseSpeedBullet(BulletName bullet)
+    {
+       // bullet_prefabs[(int)bullet].SetDame((int)(bullet_prefabs[(int)bullet].GetDame() * 1.1f));
+    }
+
     IEnumerator SpawnBullet(BulletName bulletname )
     {
         while (true)
@@ -112,16 +124,16 @@ public class character : MonoBehaviour
         bloodF.fillAmount = (float)blood / 200;
         transform.Translate(new Vector3(joystick.Horizontal, joystick.Vertical) * speed * Time.deltaTime);
         main_camera.transform.position = transform.position + new Vector3(0, 0, -10);
-        if (blood <= 0 && GameLose.active == false) // game lose 
+        if (blood <= 0 && GameLose.gameObject.activeInHierarchy == false  ) // game lose 
         {   
             GameLose.SetActive(true);
-            
+            Time.timeScale = 0;
             ManageAudio.Instance.gameLose();
         }
-        if (Time.time -preTime>= 60 * minute && GameWin.active == false)
+        if (Time.time -preTime>= 60 * minute && GameWin.gameObject.activeInHierarchy == false)
         {
             GameWin.SetActive(true);
-
+            Time.timeScale = 0;
             ManageAudio.Instance.gameWin();
         }
 
@@ -165,7 +177,7 @@ public class character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "EXP")
+        if (collision.gameObject.tag == "EXP"  )
         {
             // increase EXP
             if (EXP.fillAmount >= 1) return;

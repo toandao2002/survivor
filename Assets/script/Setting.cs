@@ -6,7 +6,7 @@ public class Setting : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject setting;
-    bool active = true;
+    
     void Start()
     {
         

@@ -7,11 +7,11 @@ public class Bullet_rocket : ShootBullet
     ZombieCommon zombie;
     public GameObject Explosion;
     public float speed;
-    int dame = 20;
+    public static int dame = 15;
     Vector3 des;
     bool flag_shoot = false;
-    public long timeInitBullet = 2;
-    float preTime = 0;
+    public long timeInitBullet = 3;
+    
     private void Awake()
     {
 
@@ -101,6 +101,9 @@ public class Bullet_rocket : ShootBullet
         }
         des.z = 0;
     }
-           
-          
+
+    public override long get_init_bullet()
+    {
+        return timeInitBullet;
+    }
 }

@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   collisionEnemyFx: {fileID: 0}
+  cam: {fileID: 0}
   dame: 10
   speed: 12
   time_destroy: 3

@@ -20,9 +20,10 @@ public abstract class ShootBullet : MonoBehaviour
     float widthcam, heightcam;
     public Camera cam ;
     Vector3 cam_pos ;
+    
     public abstract int GetDame();
     public abstract void SetDame(int value);
-
+    public abstract long  get_init_bullet();
     // Start is called before the first frame update
     public abstract void shoot( );
 

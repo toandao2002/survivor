@@ -5,10 +5,10 @@ using UnityEngine;
 public class BulletBrick :   ShootBullet
 {
     public float speed =500;
-    public int  dame = 10;
+    public static int dame = 10;
+
+    public long timeInitBullet = 3;
     
-    public long timeInitBullet = 2;
-    float preTime = 0;
     bool flag_shoot = false;
     Rigidbody2D Rig;
     public override int GetDame()
@@ -57,5 +57,8 @@ public class BulletBrick :   ShootBullet
             Rig.AddForce(new Vector3(x, 1, 0) * speed);
         }
     }
-   
+    public override long get_init_bullet()
+    {
+        return timeInitBullet;
+    }
 }

@@ -8,10 +8,10 @@ public class manage_haunrs :  ShootBullet
      
     zombies zombie;
     public float speed;
-    int dame = 20;
+    public static int dame =10;
     /*  public bool is_sample = false;*/
     public long timeInitBullet = 2;
-    float preTime = 0;
+    
     float angle, radius = 2, angle_speed=0;
     Vector3 center_circle;
     public huanraojupan huar;
@@ -103,5 +103,9 @@ public class manage_haunrs :  ShootBullet
     public override void SetDame(int value)
     {
         dame = value;
+    }
+    public override long get_init_bullet()
+    {
+        return timeInitBullet;
     }
 }

@@ -21,10 +21,11 @@ public class ManageAudio : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+       
          
     }
 
@@ -35,12 +36,15 @@ public class ManageAudio : MonoBehaviour
     }
     public void HitZombie()
     {
-        audioSource.PlayOneShot(hitZombie);
+        audioSource.PlayOneShot(hitZombie, 0.5f);
     }
     public void playSound(int i )
     {
-         
-        audioSource.PlayOneShot(audioBullets[i]);
+        if (i < audioBullets.Count && audioBullets[i] != null)
+        {
+            audioSource.PlayOneShot(audioBullets[i]);
+        }
+            
     }
     public void EXP( )
     {

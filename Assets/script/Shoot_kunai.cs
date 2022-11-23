@@ -6,11 +6,11 @@ public class Shoot_kunai : ShootBullet
 {
     ZombieCommon zombie;
     public float speed;
-    public int dame =20;
+    public static int dame = 10;
     Vector3 des ;
     bool flag_shoot = false;
     public long timeInitBullet = 2;
-    float preTime = 0;
+   
     private void Awake()
     {
         
@@ -97,5 +97,10 @@ public class Shoot_kunai : ShootBullet
             if (dir.x > 0) angle *= -1;
             transform.GetChild(0).localRotation = Quaternion.Euler(0, 0, (angle - 45));
         }
+    }
+
+    public override long  get_init_bullet()
+    {
+        return timeInitBullet;
     }
 }

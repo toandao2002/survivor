@@ -7,6 +7,8 @@ public class HandleButtonSelectBullet : MonoBehaviour
 { 
    
     public Text nameBullet;
+    public int order_button;
+    SelectSkillPopup select;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,21 +22,34 @@ public class HandleButtonSelectBullet : MonoBehaviour
     }
     public Sprite  FindBulletInSelectSkill()
     {
-        foreach (Skill fs in transform.parent.parent.parent.GetComponent<SelectSkillPopup>().data.skills )
-        {
-            if (fs.enum_bullet.ToString() .Equals(nameBullet.text ))
-            {
-                
-                return fs.sprite;
-            }
-        }
-        return null;
+         
+        return select.skills[order_button].image.sprite;
+        
     }
-    
+    void handle_type_skill()
+    {
+        if (select.skills[order_button].type == type_skill.add)
+        {
+            character.Instance.AddNewBullet(select.skills[order_button].enum_bullet);
+        }
+        else if (select.skills[order_button].type == type_skill.inc_dame)
+        {
+            character.Instance.IncreaseDame(select.skills[order_button].enum_bullet);
+        }
+        else if (select.skills[order_button].type == type_skill.inc_dame)
+        {
+            character.Instance.IncreaseSpeedBullet(select.skills[order_button].enum_bullet);
+        }
+        select.data.merge_skill[(int)select.skills[order_button].id / 5][select.skills[order_button].id % 5].is_use = true;
+    }
     public void OnButtonPress()
-    {   
+    {
+        select = transform.parent.parent.parent.GetComponent<SelectSkillPopup>();
+        if (transform.parent.CompareTag("Item1")) order_button = 0;
+        else if (transform.parent.CompareTag("Item2")) order_button = 1;
+        else   order_button =2;
+        handle_type_skill();
 
-        character.Instance.AddNewBullet(nameBullet.text);
         if (!character.Instance.Item.Contains(FindBulletInSelectSkill()))
             character.Instance.Item.Add(FindBulletInSelectSkill());
         transform.parent.parent.parent.parent.gameObject.SetActive(false);

@@ -15,7 +15,7 @@ public class AddItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.childCount < character.Instance.Item.Count)
+        if (this.transform.childCount -1 < character.Instance.Item.Count)
         {
             addItem();
 
@@ -27,7 +27,7 @@ public class AddItem : MonoBehaviour
         {
            
                 GameObject tmp = Instantiate(Item);
-                tmp.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = character.Instance.Item[this.transform.childCount];
+                tmp.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = character.Instance.Item[this.transform.childCount-1];
             tmp.transform.SetParent(this.gameObject.transform);  
      
         }

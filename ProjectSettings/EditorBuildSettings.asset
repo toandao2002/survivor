@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/ChoseCharacter.unity
+    guid: 8f28106b0b2388b42acf2d24fb512097
+  - enabled: 0
+    path: Assets/Scenes/GamePlay4.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GamePlay2.unity
+    guid: 87df95a386e735142b4e9e8b53b13155
+  - enabled: 1
+    path: Assets/Scenes/GamePlay1.unity
+    guid: a81fd2d9d0aa9584593f79e2df031975
   m_configObjects: {}

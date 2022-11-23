@@ -15,9 +15,10 @@ public class manage_zombie : MonoBehaviour
     public List<GameObject> prefab_zombie = new List<GameObject>();
     int type_spawn = 0;
     bool l_or_right = true;
+    int id;
     Time time;
     public float seconds_Initialize_New_Zombie;
-    private double preTime;
+    private double preTime, fTime;
     private void Awake()
     {
         Instace = this;
@@ -27,9 +28,10 @@ public class manage_zombie : MonoBehaviour
         cam = control_camera.Instance.GetCamera();
         heightcam = 2f * cam.orthographicSize;
         widthcam = heightcam * cam.aspect;
-
+        fTime = Time.time;
         preTime = Time.time;
     }
+     
 
     // Update is called once per frame
     void Update()
@@ -37,16 +39,33 @@ public class manage_zombie : MonoBehaviour
         // if (character.Instance.blood <= 0) Time.timeScale = 0f;
 
         cam_pos = control_camera.Instance.get_position();
+        
         seconds_Initialize_New_Zombie -= 0.00001f;
         if (seconds_Initialize_New_Zombie <= 0.5)
         {
             seconds_Initialize_New_Zombie += 0.00001f;
         }
         if (Time.time < 50)
+        {
+            id = Random.Range(2, 4);
             type_spawn = Random.Range(0, 2);
-        else if (Time.time <= 100) type_spawn = Random.Range(0, 3);
-        else if (Time.time <= 130) type_spawn = Random.Range(0, 4);
-        else if (Time.time <= 240) type_spawn = Random.Range(0, 5);
+        }
+        else if (Time.time - fTime <= 100)
+        {
+            id = Random.Range(0, 4);
+            type_spawn = Random.Range(0, 3);
+        }
+
+        else if (Time.time - fTime <= 130)
+        {
+            id = Random.Range(0, prefab_zombie.Count);
+            type_spawn = Random.Range(0, 4);
+        }
+        else  
+        {
+            id = Random.Range(0, prefab_zombie.Count);
+            type_spawn = Random.Range(0, 5);
+        }
         if (Time.time - preTime > seconds_Initialize_New_Zombie)
         {
 
@@ -78,7 +97,7 @@ public class manage_zombie : MonoBehaviour
     }
     void spawn_single()
     {
-        int id = Random.Range(0, prefab_zombie.Count);
+        
 
         float x = 0;
         if (l_or_right)
@@ -100,7 +119,8 @@ public class manage_zombie : MonoBehaviour
     }
     void spawn_3_zombie_folow_row()
     {
-        int id = Random.Range(0, prefab_zombie.Count);
+         
+         
         float x = 0;
 
         if (l_or_right)
@@ -134,7 +154,7 @@ public class manage_zombie : MonoBehaviour
     }
     void spawn_Many_zombie_folow_Both_side()
     {
-        int id = Random.Range(0, prefab_zombie.Count);
+         
         float x = 0;
 
         x = cam_pos.x + widthcam / 2;
@@ -182,7 +202,7 @@ public class manage_zombie : MonoBehaviour
     }
     void spawn_zombie_follow_circle()
     {
-        int id = Random.Range(0, prefab_zombie.Count);
+        
         float x = cam_pos.x;
         int dir = 1;
         if (character.Instance.joystick.Vertical > 0)

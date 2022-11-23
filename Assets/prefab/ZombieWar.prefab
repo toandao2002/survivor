@@ -123,13 +123,14 @@ MonoBehaviour:
   EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
   isCollide: 0
   die: 0
-  blood: 5
-  dame: 20
-  step: 0.005
+  blood: 30
+  dame: 30
+  step: 0.01
   ani: {fileID: 0}
   ParticleLoseBloodZombie: {fileID: 1844780192599652067, guid: 34119e92aa7bbfa439df33ac8de48333, type: 3}
   Collider2D: {fileID: 0}
   AmountLoseBlood: {fileID: 1471933491296059384, guid: dc8ed5d35d471394eb7f825bbdb87ac8, type: 3}
+  home: 0
 --- !u!61 &5732519229949381685
 BoxCollider2D:
   m_ObjectHideFlags: 0
