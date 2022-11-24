@@ -13,11 +13,15 @@ public class ZombieCommon : MonoBehaviour
     public int dame;
     public float step;
     public Animator ani;
+    public int f_blood ;
     public GameObject ParticleLoseBloodZombie;
     Vector3 scaleFirst;
     public Collider2D Collider2D;
     public Text AmountLoseBlood;
     public bool home = false;
+    Vector3 campos;
+    Camera cam;
+    int width, height;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -25,11 +29,12 @@ public class ZombieCommon : MonoBehaviour
         {
             Collider2D = GetComponent<Collider2D>();
         }
+        f_blood = blood;
     }
     private void OnEnable()
     {
         
-        blood = 20;
+        blood = f_blood;
         Collider2D.enabled = true;
 
         gameObject.tag = "Zombie";
@@ -44,7 +49,11 @@ public class ZombieCommon : MonoBehaviour
     }
     void Start()
     {   
-        
+        //camera
+        cam = Camera.main;
+        height = (int)(2f * cam.orthographicSize);
+        width = (int)(height * cam.aspect);
+
         scaleFirst = transform.localScale;
         ani = GetComponent<Animator>();
     }
@@ -53,8 +62,9 @@ public class ZombieCommon : MonoBehaviour
     void Update()
     {
         
+
          if (character.Instance.blood <= 0) Time.timeScale = 0f;
-        
+        OutOfCamera();
         if (blood <= 0  )
         {
             manage_zombie.Instace.zombies.Remove(this.gameObject);
@@ -79,6 +89,16 @@ public class ZombieCommon : MonoBehaviour
         ani.SetBool("Attack", true);
         ani.SetBool("Run", false);
     }
+    public void OutOfCamera()
+    {
+        campos = cam.transform.position;
+        if ( transform.position.x > campos.x + width || transform.position.x < campos.x - width||
+            transform.position.y > campos.y + height || transform.position.x < campos.x - height)
+        {
+            manage_zombie.Instace.zombies.Remove(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
+    }
     public void Run()
     {
         ani.SetBool("Attack", false);
@@ -96,7 +116,7 @@ public class ZombieCommon : MonoBehaviour
                 tmp++;
                 UI.Instance.amount_zombie_die.text = tmp.ToString();
                 die = true;
-                manage_zombie.Instace.zombies.Remove(this.gameObject);
+                
                 Instantiate(EXP, transform.position, Quaternion.identity);
             }
             
@@ -133,7 +153,7 @@ public class ZombieCommon : MonoBehaviour
             blood_text_tmp.transform.GetChild(0).GetComponent<Text>().text = collision.gameObject.GetComponent<ShootBullet>().GetDame().ToString();
              
             ManageAudio.Instance.HitZombie();
-            blood_text_tmp.transform.parent = GameWorldSpace.Instance.gameObject.transform;
+            blood_text_tmp.transform.SetParent( GameWorldSpace.Instance.gameObject.transform);
             blood -= tmp;
         }
     }

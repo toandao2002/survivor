@@ -170,7 +170,7 @@ MonoBehaviour:
   EXP: {fileID: 2209964415978508344, guid: a3b4dca1c4e177740b8dbd2ae149dc3e, type: 3}
   isCollide: 0
   die: 0
-  blood: 20
+  blood: 10
   dame: 20
   step: 0.005
   ani: {fileID: 0}

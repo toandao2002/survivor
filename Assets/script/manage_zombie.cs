@@ -7,7 +7,7 @@ public class manage_zombie : MonoBehaviour
     // Start is called before the first frame update
     
     public static manage_zombie Instace;
-
+    public int  max_zombie_can_init = 100;
     float widthcam, heightcam;
     Camera cam;
     Vector3 cam_pos;
@@ -41,11 +41,14 @@ public class manage_zombie : MonoBehaviour
         cam_pos = control_camera.Instance.get_position();
         
         seconds_Initialize_New_Zombie -= 0.00001f;
+        // stop init zombie when amount zombie too much 
+        if (zombies.Count >= max_zombie_can_init ) return;
         if (seconds_Initialize_New_Zombie <= 0.5)
         {
             seconds_Initialize_New_Zombie += 0.00001f;
+            
         }
-        if (Time.time < 50)
+        if (Time.time -fTime < 50)
         {
             id = Random.Range(2, 4);
             type_spawn = Random.Range(0, 2);

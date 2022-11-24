@@ -24,6 +24,6 @@ public class Replay : MonoBehaviour
     }
     public  void relay ()
     {
-        SceneManager.LoadScene("SampleScene");  
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -17,10 +17,13 @@ public class zombies : ZombieCommon
 
 
 
-
+    private void Awake()
+    {
+        f_blood = blood;
+    }
     private void OnEnable()
     {
-        blood = 20;
+        blood = f_blood;
         gameObject.tag = "Zombie";
         isCollide = false;
     }
@@ -29,6 +32,7 @@ public class zombies : ZombieCommon
     void Update()
     {
         if (character.Instance.blood <= 0) Time.timeScale = 0f;
+        OutOfCamera();
         if (isCollide == false)
         {
             movetoCharacter();
